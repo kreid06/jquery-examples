@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <style>
+      .active{
+         background-color: #49fb35;
+      }
+    </style>
     <meta charset="utf-8">
     <title></title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -15,6 +20,56 @@
     4. the ability to edit an existing task
 
     */
+    $(function() {
+     
+      var $getID = 0;
+      $(`#add-button`).on('click', () => {
+        if($(`#description`).val() === false){
+           alert(`Please insert message`);
+        }else {
+            
+          $getID += 1;
+          var $newItem = $(`<li id = a${$getID}></li>`)
+          var $innerText = $(`<text class = text-box>${$(`#description`).val()}</text>`)
+          $innerText.attr('contenteditable', false)
+
+          var $removeItembt = $(`<button data-id = ${$getID} class = remove-item >x</button>`)
+
+          var $editBT = $(`<button data-id = ${$getID} class = editable >Edit</button>`) 
+          $newItem.append($innerText);
+          $newItem.append($removeItembt);
+          $newItem.append($editBT);
+          $('#todo-list').append($newItem)
+          }
+      })
+
+      $(`body`).on(`click`, `.remove-item`, (e) => {
+        console.log('hi');
+        $(`#a${$(e.target).attr(`data-id`)}`).remove();
+      })
+      
+      $(`body`).on(`click`, `.editable`, (e) => {
+        $(e.target).toggleClass('active')
+        console.log('hi');
+        $targetID = $(`#a${$(e.target).attr(`data-id`)} > text`)
+        var boolean = $targetID.attr(`contenteditable`) === `false`?boolean = `true`:boolran =`false`;
+        var boolean1 = ($targetID.attr(`contenteditable`))
+        console.log(boolean)
+        $targetID.attr(`contenteditable`, boolean)
+      })
+      $(`body`).on(`click`, `.text-box`, (e) => {
+        
+        console.log('hi');
+        $targetID = $(e.target)
+        if($targetID.css(`text-decoration`) == `none solid rgb(0, 0, 0)`) {
+          $targetID.css(`text-decoration`, `line-through`)
+        }else{
+          $targetID.css(`text-decoration`, `none`)
+        }
+      })
+      
+
+    });
     </script>
     <style>
     #wrapper {

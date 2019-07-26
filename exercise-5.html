@@ -13,13 +13,19 @@
     */
     $(function() {
       // Write code here
+      $(`li`).on('click', (e) => {
+        e.preventDefault();
+        let $href = $(e.target).attr('href')
+        $(`#iframe`).attr(`src`, $href)
+        console.log($href)
+      })
     });
     </script>
   </head>
   <body>
     <ul>
       <li><a href="http://hellohappy.org">Hello Happy</a></li>
-      <li><a href="http://duckduckgo.com">DuckDuckGo</a></li>
+      <li><a href="https://www.google.com">DuckDuckGo</a></li>
       <li><a href="http://css-tricks.com">CSS Tricks</a></li>
     </ul>
     <iframe id="iframe" src="http://hellohappy.org" width="800" height="480"></iframe>

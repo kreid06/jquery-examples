@@ -12,7 +12,14 @@
     */
     $(function() {
       // Write code here
+      $(`#accordion`).on('click',"#section-header", (e) => {
+        console.log(e)
+        $(`#accordion`).find(`#section`).slideToggle();
+        console.log('hi')
+        
     });
+  })
+
     </script>
 
     <style>
